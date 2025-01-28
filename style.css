@@ -1,0 +1,86 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0; /* Sfondo grigio chiaro */
+    margin: 0; /* Rimuovi il margine predefinito del body */
+    padding: 20px; /* Aggiungi un po' di spazio intorno al contenuto */
+    display: flex; /* Usa flexbox per centrare la chat */
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Assicura che il body occupi almeno tutta l'altezza della finestra */
+}
+
+h1 {
+    text-align: center; /* Centra il titolo */
+    margin-bottom: 30px; /* Aggiungi margine inferiore al titolo */
+    color: #333; /* Colore del testo del titolo più scuro */
+}
+
+#chat-area {
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 15px; /* Aumenta il padding interno */
+    margin-bottom: 20px; /* Aumenta il margine inferiore */
+    background-color: white; /* Sfondo bianco per l'area chat */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leggera ombra per dare profondità */
+}
+
+#input-area {
+    display: flex;
+    margin-top: 15px; /* Aumenta il margine superiore */
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px; /* Aumenta il padding interno */
+    border: 1px solid #ddd; /* Bordo più chiaro */
+    border-radius: 5px; /* Angoli arrotondati */
+    font-size: 16px; /* Aumenta la dimensione del testo */
+}
+
+#send-button {
+    padding: 10px 20px; /* Aumenta il padding del pulsante */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer;
+    font-size: 16px; /* Aumenta la dimensione del testo */
+}
+
+#send-button:hover { /* Stile al passaggio del mouse */
+    background-color: #0056b3; /* Sfondo più scuro all'hover */
+}
+
+.user-message {
+    text-align: right;
+    margin-bottom: 10px; /* Aumenta il margine inferiore tra i messaggi */
+    color: blue;
+    background-color: #e0f7fa; /* Sfondo azzurro chiaro */
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom-right-radius: 0; /* Arrotonda solo alcuni angoli per un aspetto a "bolla" */
+    align-self: flex-end; /* Allinea i messaggi utente a destra nell'area chat (se usassi flexbox per #chat-area) */
+}
+
+.ai-message {
+    text-align: left;
+    margin-bottom: 10px;
+    color: green;
+    background-color: #f0fbe8; /* Sfondo verde chiaro */
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0; /* Arrotonda solo alcuni angoli per un aspetto a "bolla" */
+    align-self: flex-start; /* Allinea i messaggi IA a sinistra nell'area chat (se usassi flexbox per #chat-area) */
+}
+
+.error-message {
+    color: red;
+    font-weight: bold; /* Rendi il testo in grassetto */
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffebee; /* Sfondo rosso molto chiaro */
+    border: 1px solid #ef9a9a; /* Bordo rosso chiaro */
+    border-radius: 5px;
+}
