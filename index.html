@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat IA Gemini Semplice</title>
+    <style>
+        /* Stile CSS base (puoi migliorarlo!) */
+        body { font-family: sans-serif; }
+        #chat-area { border: 1px solid #ccc; height: 400px; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+        #input-area { display: flex; }
+        #message-input { flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        #send-button { padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .user-message { text-align: right; margin-bottom: 5px; color: blue; }
+        .ai-message { text-align: left; margin-bottom: 5px; color: green; }
+        .error-message { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Chat IA Gemini Semplice</h1>
+
+    <div id="chat-area">
+        <!-- Qui verranno visualizzati i messaggi della chat -->
+    </div>
+
+    <div id="input-area">
+        <input type="text" id="message-input" placeholder="Scrivi il tuo messaggio...">
+        <button id="send-button">Invia</button>
+    </div>
+
+    <script>
+        const chatArea = document.getElementById('chat-area');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(event) { // Invia anche con Enter
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                appendMessage('user-message', message, 'Utente'); // Mostra il messaggio dell'utente nella chat
+                messageInput.value = ''; // Pulisci l'input
+
+                // Invia il messaggio al backend API
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.response) {
+                        appendMessage('ai-message', data.response, 'IA Gemini'); // Mostra la risposta dell'IA nella chat
+                    } else if (data.error) {
+                        appendMessage('error-message', `Errore IA: ${data.error}`, 'Errore'); // Mostra un messaggio di errore
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore Fetch API:', error);
+                    appendMessage('error-message', 'Errore di comunicazione con il server.', 'Errore');
+                });
+            }
+        }
+
+        function appendMessage(messageClass, text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add(messageClass); // Aggiungi la classe CSS per lo stile
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`; // Usa innerHTML per il tag <strong>
+            chatArea.appendChild(messageDiv);
+            chatArea.scrollTop = chatArea.scrollHeight; // Scroll automatico in basso
+        }
+    </script>
+</body>
+</html>
