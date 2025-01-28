@@ -1,97 +1,73 @@
 body {
     font-family: 'Roboto', sans-serif; /* Usa il font Roboto */
-    background-color: #fafafa; /* Sfondo leggermente grigio */
+    background-color: #f0f0f0; /* Sfondo grigio chiaro */
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Layout verticale */
-    align-items: center;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
     min-height: 100vh;
 }
 
-header {
-    background-color: #fff; /* Sfondo bianco per l'header */
-    padding: 15px 20px;
-    width: 100%;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Ombra sottile sotto l'header */
-    display: flex;
-    justify-content: space-between; /* Spazio tra elementi header */
-    align-items: center;
-}
-
-.header-left, .header-right {
-    display: flex;
-    align-items: center;
-}
-
-.header-button {
+#sidebar-toggle {
+    position: absolute; /* Posizione assoluta rispetto al body */
+    top: 20px; /* Distanza dall'alto */
+    left: 20px; /* Distanza da sinistra */
     background: none;
     border: none;
-    padding: 8px 12px;
-    margin-left: 10px;
-    border-radius: 20px;
+    font-size: 24px; /* Icona hamburger più grande */
+    color: #777; /* Colore icona hamburger */
     cursor: pointer;
-    font-size: 14px;
+    padding: 10px;
+    border-radius: 50%; /* Pulsante toggle rotondo */
+    z-index: 10; /* Assicura che sia sopra la sidebar */
+}
+
+#sidebar-toggle:hover {
+    background-color: #e0e0e0; /* Hover sul pulsante toggle */
+}
+
+
+#sidebar {
+    position: fixed; /* Sidebar posizione fissa */
+    top: 0;
+    left: 0;
+    height: 100vh; /* Altezza 100% della viewport */
+    width: 250px; /* Larghezza sidebar */
+    background-color: #fff; /* Sfondo bianco sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombra sidebar */
+    padding: 20px;
+    transform: translateX(-100%); /* Nascondi sidebar di default */
+    transition: transform 0.3s ease-in-out; /* Animazione transizione apertura/chiusura */
+    z-index: 1; /* Sidebar sotto il pulsante toggle */
+    overflow-y: auto; /* Scroll verticale se contenuto sidebar è troppo lungo */
+}
+
+#sidebar.sidebar-open {
+    transform: translateX(0); /* Mostra sidebar quando ha la classe 'sidebar-open' */
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
     color: #555;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.header-button:hover {
-    background-color: #f0f0f0; /* Leggero hover sull'header button */
-}
-
-.header-button i {
-    margin-right: 5px;
-}
-
-.header-button.prova-advanced {
-    color: #fff;
-    background-color: #1a73e8; /* Blu Google per "Prova Advanced" */
-}
-
-.header-button.prova-advanced:hover {
-    background-color: #0d47a1; /* Blu più scuro hover */
-}
-
-.header-button.profile {
-    border-radius: 50%; /* Profilo rotondo */
-    width: 35px; /* Larghezza fissa */
-    height: 35px; /* Altezza fissa */
-    padding: 0; /* Rimuovi padding per icone rotonde */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px; /* Icona profilo più grande */
-}
-.header-button.profile i {
-    margin-right: 0; /* Rimuovi margine icona profilo */
-}
-
-
-.version {
-    font-size: 12px;
+.sidebar-content {
     color: #777;
-    margin-left: 5px;
 }
 
 
 #chat-container {
     width: 100%;
-    max-width: 700px; /* Larghezza massima contenitore chat */
+    max-width: 700px; /* Larghezza massima contenitore chat centrale */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra orizzontalmente contenuto chat */
 }
 
-
 h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 24px; /* Titolo più grande */
+    display: none; /* Nascondi il titolo "Chat IA Gemini Semplice" */
 }
 
 #chat-area {
@@ -165,21 +141,6 @@ h1 {
 
 #send-button:hover {
     background-color: #0d47a1; /* Blu più scuro hover pulsante invio */
-}
-
-.mic-button {
-    background: none;
-    border: none;
-    padding: 10px;
-    margin-left: 5px; /* Margine sinistro pulsante microfono */
-    border-radius: 50%; /* Pulsante microfono rotondo */
-    cursor: pointer;
-    color: #777; /* Colore icona microfono */
-    font-size: 18px; /* Icona microfono più grande */
-}
-
-.mic-button:hover {
-    background-color: #f0f0f0; /* Leggero hover pulsante microfono */
 }
 
 

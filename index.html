@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chat IA Gemini Semplice (Stile Gemini)</title>
+    <title>Chat IA Semplice e Centrale</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"> <!-- Font Roboto da Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Font Awesome per icone -->
 </head>
 <body>
-    <header>
-        <div class="header-left">
-            <button class="header-button"><i class="fas fa-bars"></i> Gemini</button>
-            <span class="version">2.0 Flash Experimental</span>
+
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <h3>Chat Passate</h3>
         </div>
-        <div class="header-right">
-            <button class="header-button prova-advanced"><i class="fa-regular fa-gem"></i> Prova Gemini Advanced</button>
-            <button class="header-button"><i class="fas fa-th"></i></button>
-            <button class="header-button profile"><i class="fas fa-user-circle"></i></button>
+        <div class="sidebar-content">
+            <p>Qui andranno le chat passate (funzionalità futura)</p>
         </div>
-    </header>
+    </aside>
+
+    <button id="sidebar-toggle" aria-label="Apri menu"><i class="fas fa-bars"></i></button>
+
 
     <div id="chat-container">
         <div id="chat-area">
@@ -26,61 +27,12 @@
 
         <div id="input-area">
             <div class="input-wrapper">
-                <input type="text" id="message-input" placeholder="Chiedi a Gemini">
+                <input type="text" id="message-input" placeholder="Scrivi il tuo messaggio...">
                 <button id="send-button"><i class="fas fa-paper-plane"></i></button>
             </div>
-            <button class="mic-button"><i class="fas fa-microphone"></i></button>
         </div>
     </div>
 
-    <script>
-        const chatArea = document.getElementById('chat-area');
-        const messageInput = document.getElementById('message-input');
-        const sendButton = document.getElementById('send-button');
-
-        sendButton.addEventListener('click', sendMessage);
-        messageInput.addEventListener('keypress', function(event) { // Invia anche con Enter
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const message = messageInput.value.trim();
-            if (message) {
-                appendMessage('user-message', message, 'Utente'); // Mostra il messaggio dell'utente nella chat
-                messageInput.value = ''; // Pulisci l'input
-
-                // Invia il messaggio al backend API
-                fetch('https://miniature-space-enigma-699xww7v6pq9crpw7-5000.app.github.dev/api/chat', { // **SOSTITUISCI "YOUR_CODESPACES_PUBLIC_URL" CON IL TUO URL PUBBLICO REALE DI CODESPACES!**
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: message })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.response) {
-                        appendMessage('ai-message', data.response, 'Gemini'); // Mostra la risposta dell'IA nella chat (ora "Gemini" come mittente)
-                    } else if (data.error) {
-                        appendMessage('error-message', `Errore IA: ${data.error}`, 'Errore'); // Mostra un messaggio di errore
-                    }
-                })
-                .catch(error => {
-                    console.error('Errore Fetch API:', error);
-                    appendMessage('error-message', 'Errore di comunicazione con il server.', 'Errore');
-                });
-            }
-        }
-
-        function appendMessage(messageClass, text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add(messageClass); // Aggiungi la classe CSS per lo stile
-            messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`; // Usa innerHTML per il tag <strong>
-            chatArea.appendChild(messageDiv);
-            chatArea.scrollTop = chatArea.scrollHeight; // Scroll automatico in basso
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
