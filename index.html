@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chat IA Gemini Semplice</title>
+    <title>Chat IA Gemini Semplice (Stile Gemini)</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"> <!-- Font Roboto da Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Font Awesome per icone -->
 </head>
 <body>
-    <h1>Chat IA Gemini Semplice</h1>
+    <header>
+        <div class="header-left">
+            <button class="header-button"><i class="fas fa-bars"></i> Gemini</button>
+            <span class="version">2.0 Flash Experimental</span>
+        </div>
+        <div class="header-right">
+            <button class="header-button prova-advanced"><i class="fa-regular fa-gem"></i> Prova Gemini Advanced</button>
+            <button class="header-button"><i class="fas fa-th"></i></button>
+            <button class="header-button profile"><i class="fas fa-user-circle"></i></button>
+        </div>
+    </header>
 
-    <div id="chat-area">
-        <!-- Qui verranno visualizzati i messaggi della chat -->
-    </div>
+    <div id="chat-container">
+        <div id="chat-area">
+            <!-- Qui verranno visualizzati i messaggi della chat -->
+        </div>
 
-    <div id="input-area">
-        <input type="text" id="message-input" placeholder="Scrivi il tuo messaggio...">
-        <button id="send-button">Invia</button>
+        <div id="input-area">
+            <div class="input-wrapper">
+                <input type="text" id="message-input" placeholder="Chiedi a Gemini">
+                <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <button class="mic-button"><i class="fas fa-microphone"></i></button>
+        </div>
     </div>
 
     <script>
@@ -45,7 +62,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.response) {
-                        appendMessage('ai-message', data.response, 'IA Gemini'); // Mostra la risposta dell'IA nella chat
+                        appendMessage('ai-message', data.response, 'Gemini'); // Mostra la risposta dell'IA nella chat (ora "Gemini" come mittente)
                     } else if (data.error) {
                         appendMessage('error-message', `Errore IA: ${data.error}`, 'Errore'); // Mostra un messaggio di errore
                     }

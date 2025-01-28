@@ -1,86 +1,224 @@
 body {
-    font-family: sans-serif;
-    background-color: #f0f0f0; /* Sfondo grigio chiaro */
-    margin: 0; /* Rimuovi il margine predefinito del body */
-    padding: 20px; /* Aggiungi un po' di spazio intorno al contenuto */
-    display: flex; /* Usa flexbox per centrare la chat */
-    justify-content: center; /* Centra orizzontalmente */
-    align-items: center; /* Centra verticalmente */
-    min-height: 100vh; /* Assicura che il body occupi almeno tutta l'altezza della finestra */
+    font-family: 'Roboto', sans-serif; /* Usa il font Roboto */
+    background-color: #fafafa; /* Sfondo leggermente grigio */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Layout verticale */
+    align-items: center;
+    min-height: 100vh;
 }
 
+header {
+    background-color: #fff; /* Sfondo bianco per l'header */
+    padding: 15px 20px;
+    width: 100%;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Ombra sottile sotto l'header */
+    display: flex;
+    justify-content: space-between; /* Spazio tra elementi header */
+    align-items: center;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-button:hover {
+    background-color: #f0f0f0; /* Leggero hover sull'header button */
+}
+
+.header-button i {
+    margin-right: 5px;
+}
+
+.header-button.prova-advanced {
+    color: #fff;
+    background-color: #1a73e8; /* Blu Google per "Prova Advanced" */
+}
+
+.header-button.prova-advanced:hover {
+    background-color: #0d47a1; /* Blu più scuro hover */
+}
+
+.header-button.profile {
+    border-radius: 50%; /* Profilo rotondo */
+    width: 35px; /* Larghezza fissa */
+    height: 35px; /* Altezza fissa */
+    padding: 0; /* Rimuovi padding per icone rotonde */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px; /* Icona profilo più grande */
+}
+.header-button.profile i {
+    margin-right: 0; /* Rimuovi margine icona profilo */
+}
+
+
+.version {
+    font-size: 12px;
+    color: #777;
+    margin-left: 5px;
+}
+
+
+#chat-container {
+    width: 100%;
+    max-width: 700px; /* Larghezza massima contenitore chat */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra orizzontalmente contenuto chat */
+}
+
+
 h1 {
-    text-align: center; /* Centra il titolo */
-    margin-bottom: 30px; /* Aggiungi margine inferiore al titolo */
-    color: #333; /* Colore del testo del titolo più scuro */
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 24px; /* Titolo più grande */
 }
 
 #chat-area {
-    border: 1px solid #ccc;
-    height: 400px;
-    overflow-y: scroll;
-    padding: 15px; /* Aumenta il padding interno */
-    margin-bottom: 20px; /* Aumenta il margine inferiore */
-    background-color: white; /* Sfondo bianco per l'area chat */
-    border-radius: 8px; /* Angoli arrotondati */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leggera ombra per dare profondità */
+    border: 1px solid #e0e0e0; /* Bordo più chiaro area chat */
+    height: 500px; /* Aumenta l'altezza area chat */
+    overflow-y: auto; /* Scroll se il contenuto è troppo lungo */
+    padding: 20px; /* Aumenta il padding interno */
+    margin-bottom: 20px;
+    background-color: #fff; /* Sfondo bianco area chat */
+    border-radius: 10px; /* Angoli più arrotondati */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombra più sottile */
+    width: 100%; /* Area chat occupa tutta la larghezza del contenitore */
+    display: flex; /* Flexbox per area chat */
+    flex-direction: column; /* Messaggi in colonna */
 }
 
 #input-area {
     display: flex;
-    margin-top: 15px; /* Aumenta il margine superiore */
+    margin-top: 15px;
+    width: 100%; /* Area input occupa tutta la larghezza del contenitore */
+    padding: 10px;
+    background-color: #fff; /* Sfondo bianco area input */
+    border-radius: 10px; /* Angoli arrotondati area input */
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1); /* Ombra sottile sopra l'area input */
+    align-items: center; /* Allinea verticalmente gli elementi nell'area input */
 }
+
+.input-wrapper {
+    display: flex;
+    flex-grow: 1; /* Input wrapper si espande per occupare spazio disponibile */
+    border: 1px solid #e0e0e0; /* Bordo input wrapper */
+    border-radius: 25px; /* Bordo arrotondato per input wrapper */
+    overflow: hidden; /* Nasconde bordi arrotondati input interno che sporgono */
+    background-color: #f8f8f8; /* Sfondo input wrapper leggermente grigio */
+}
+
 
 #message-input {
     flex-grow: 1;
-    padding: 10px; /* Aumenta il padding interno */
-    border: 1px solid #ddd; /* Bordo più chiaro */
-    border-radius: 5px; /* Angoli arrotondati */
-    font-size: 16px; /* Aumenta la dimensione del testo */
+    padding: 12px 15px; /* Padding input di testo */
+    border: none; /* Rimuovi bordo input di testo */
+    font-size: 16px;
+    background-color: transparent; /* Sfondo trasparente input di testo (usa sfondo input wrapper) */
+}
+
+#message-input:focus {
+    outline: none; /* Rimuovi outline al focus input */
 }
 
 #send-button {
-    padding: 10px 20px; /* Aumenta il padding del pulsante */
-    background-color: #007bff;
+    background-color: #1a73e8; /* Blu Google per pulsante invio */
     color: white;
     border: none;
-    border-radius: 5px; /* Angoli arrotondati */
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordo pulsante invio arrotondato */
     cursor: pointer;
-    font-size: 16px; /* Aumenta la dimensione del testo */
+    font-size: 16px;
+    margin-left: 5px; /* Margine sinistro pulsante invio */
+    display: flex;
+    align-items: center; /* Centra icona verticalmente nel pulsante */
+    justify-content: center; /* Centra icona orizzontalmente nel pulsante */
+    width: 40px; /* Larghezza fissa pulsante invio */
+    height: 40px; /* Altezza fissa pulsante invio */
+    padding: 0; /* Rimuovi padding testo (usiamo icona) */
 }
 
-#send-button:hover { /* Stile al passaggio del mouse */
-    background-color: #0056b3; /* Sfondo più scuro all'hover */
+#send-button i {
+    margin-right: 0; /* Rimuovi margine icona pulsante invio */
+}
+
+
+#send-button:hover {
+    background-color: #0d47a1; /* Blu più scuro hover pulsante invio */
+}
+
+.mic-button {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin-left: 5px; /* Margine sinistro pulsante microfono */
+    border-radius: 50%; /* Pulsante microfono rotondo */
+    cursor: pointer;
+    color: #777; /* Colore icona microfono */
+    font-size: 18px; /* Icona microfono più grande */
+}
+
+.mic-button:hover {
+    background-color: #f0f0f0; /* Leggero hover pulsante microfono */
+}
+
+
+.user-message, .ai-message {
+    padding: 12px 18px; /* Padding messaggi */
+    border-radius: 20px; /* Bolle di messaggio più arrotondate */
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Va a capo se il testo è troppo lungo */
+    max-width: 80%; /* Larghezza massima bolle messaggio */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Ombra sottile bolle messaggio */
 }
 
 .user-message {
     text-align: right;
-    margin-bottom: 10px; /* Aumenta il margine inferiore tra i messaggi */
-    color: blue;
-    background-color: #e0f7fa; /* Sfondo azzurro chiaro */
-    padding: 10px;
-    border-radius: 8px;
-    border-bottom-right-radius: 0; /* Arrotonda solo alcuni angoli per un aspetto a "bolla" */
-    align-self: flex-end; /* Allinea i messaggi utente a destra nell'area chat (se usassi flexbox per #chat-area) */
+    color: #fff; /* Testo bianco per messaggi utente */
+    background-color: #1a73e8; /* Blu Google per bolle utente */
+    border-bottom-right-radius: 3px; /* Angolo inferiore destro meno arrotondato */
+    align-self: flex-end; /* Allinea a destra */
 }
 
 .ai-message {
     text-align: left;
-    margin-bottom: 10px;
-    color: green;
-    background-color: #f0fbe8; /* Sfondo verde chiaro */
-    padding: 10px;
-    border-radius: 8px;
-    border-bottom-left-radius: 0; /* Arrotonda solo alcuni angoli per un aspetto a "bolla" */
-    align-self: flex-start; /* Allinea i messaggi IA a sinistra nell'area chat (se usassi flexbox per #chat-area) */
+    color: #333; /* Testo scuro per messaggi IA */
+    background-color: #f0f0f0; /* Grigio chiaro per bolle IA */
+    border-bottom-left-radius: 3px; /* Angolo inferiore sinistro meno arrotondato */
+    align-self: flex-start; /* Allinea a sinistra */
 }
+
+.ai-message strong {
+    color: #333; /* Rendi il nome del mittente (Gemini) più scuro */
+}
+
 
 .error-message {
     color: red;
-    font-weight: bold; /* Rendi il testo in grassetto */
+    font-weight: bold;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #ffebee; /* Sfondo rosso molto chiaro */
-    border: 1px solid #ef9a9a; /* Bordo rosso chiaro */
+    background-color: #ffebee;
+    border: 1px solid #ef9a9a;
     border-radius: 5px;
 }
