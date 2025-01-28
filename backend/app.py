@@ -1,8 +1,10 @@
+from flask_cors import CORS
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 # *** CODICE AGGIUNTO PER TEST SEMPLICE ***
 @app.route('/')
