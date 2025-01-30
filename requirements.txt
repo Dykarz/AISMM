@@ -1,0 +1,7 @@
+streamlit
+pandas
+plotly-express
+cryptography
+python-dotenv
+firebase-admin
+sqlalchemy
